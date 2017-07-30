@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  gpsd:
+    image: bradsjm/rpi-gpsd 
+    command: -D3 /dev/ttyAMA0
+    ports:
+      - 2947:2947
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+
+  redis:
+    image: arm32v7/redis
+  
+  logger:
+    build: ./logger
+    links:
+     - redis
+     - gpsd
