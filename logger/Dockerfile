@@ -1,4 +1,4 @@
-FROM gone/base:armhf
-RUN mkdir /etc/service/hello
-COPY run.hello.sh /etc/service/hello/run
-RUN chmod +x /etc/service/*/run
+FROM gone/php-arm:cli
+COPY .docker/service /etc/service
+RUN chmod +x /etc/service/*/run \
+ && chmod +x /app/push-to-redis.php

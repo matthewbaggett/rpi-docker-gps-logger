@@ -3,7 +3,7 @@ version: "2"
 services:
   gpsd:
     image: bradsjm/rpi-gpsd 
-    command: -D3 /dev/ttyAMA0
+    command: /dev/ttyAMA0
     ports:
       - 2947:2947
     devices:
@@ -14,6 +14,13 @@ services:
   
   logger:
     build: ./logger
+    environment:
+     - REDIS_HOST=redis
+     - REDIS_PORT=6379
+     - GPSD_HOST=gpsd
+     - GPSD_PORT=2947
     links:
      - redis
      - gpsd
+    volumes:
+     - "./logger:/app"

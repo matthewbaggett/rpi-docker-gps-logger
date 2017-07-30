@@ -1,0 +1,3 @@
+#!/bin/bash
+/app/push-to-redis.php
+sleep 1;
