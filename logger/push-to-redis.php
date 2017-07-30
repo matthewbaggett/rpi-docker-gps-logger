@@ -214,7 +214,7 @@ class gpsLogger{
             $record->getError()->climb = isset($tpv->epc) ? $tpv->epc : null;
 
             $this->redisClient->hmset('location:' . $record->getTime()->getTimestamp(), $record->__toArray());
-            $this->redisClient->publish('location', $record->__toArray());
+            $this->redisClient->publish('location', json_encode($record->__toArray()));
             $this->calculateSleepInterval($record);
             sleep($this->sleepInterval);
 
