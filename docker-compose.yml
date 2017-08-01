@@ -21,7 +21,7 @@ services:
       - redis
   
   logger:
-    image: matthewbaggett/rpi-gps-logger
+    image: gone/rpi-gps-logger
     build: ./logger
     environment:
      - REDIS_HOST=redis
@@ -35,7 +35,7 @@ services:
      - "./logger:/app"
 
   syncer:
-    image: matthewbaggett/rpi-redis-syncer
+    image: gone/rpi-redis-syncer
     build: ./sync
     environment:
      - LOCAL_REDIS_PROTOCOL=tcp
