@@ -1,0 +1,15 @@
+{
+    "name": "matthewbaggett/net-mon",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Matthew Baggett",
+            "email": "matthew@baggett.me"
+        }
+    ],
+    "require": {
+        "predis/predis": "^1.1",
+        "kint-php/kint": "^2.1",
+        "jakeasmith/http_build_url": "^1.0"
+    }
+}

@@ -21,6 +21,7 @@ services:
       - redis
   
   logger:
+    image: matthewbaggett/rpi-gps-logger
     build: ./logger
     environment:
      - REDIS_HOST=redis
@@ -32,3 +33,22 @@ services:
      - gpsd
     volumes:
      - "./logger:/app"
+
+  syncer:
+    image: matthewbaggett/rpi-redis-syncer
+    build: ./sync
+    environment:
+     - LOCAL_REDIS_PROTOCOL=tcp
+     - LOCAL_REDIS_HOST=redis
+     - LOCAL_REDIS_PORT=6379
+     - REMOTE_REDIS_PROTOCOL=http
+     - REMOTE_REDIS_HOST=webdis.controlpanel.home.gone.io
+     - REMOTE_REDIS_PORT=80
+     - REMOTE_REDIS_USER=RemoteAccess
+     - REMOTE_REDIS_PASS=6iz7ulwS683N38C
+     - "REMOTE_ADDED_PREFIX=car:greenbox:"
+     - DELETE_ON_COPY=true
+    links:
+     - redis
+    volumes:
+     - "./sync:/app"
