@@ -11,6 +11,14 @@ services:
 
   redis:
     image: arm32v7/redis
+
+  commander:
+    image: gone/rpi-docker-redis-commander
+    command: --redis-host redis
+    ports:
+      - "8080:8081"
+    links:
+      - redis
   
   logger:
     build: ./logger
