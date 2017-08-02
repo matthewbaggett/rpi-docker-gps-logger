@@ -77,7 +77,7 @@ class record{
 
     public function __toArray(){
         $array = $this->getMode()->__toArray();
-        $array = array_merge($array, ['time' => $this->getTime()->getTimestamp()]);
+        $array = array_merge($array, ['time_u' => $this->getTime()->getTimestamp(), 'time' => $this->getTime()->format('Y-m-d H:i:s')]);
         $array = array_merge($array, $this->getCoord()->__toArray());
         $array = array_merge($array, $this->getMovement()->__toArray());
         $array = array_merge($array, $this->getError()->__toArray());
