@@ -40,7 +40,9 @@ foreach($local->keys("*") as $key){
 
 if(isset($environment['DELETE_ON_COPY']) && $environment['DELETE_ON_COPY'] == true){
     echo "Synced and cleared " . count($syncedKeys) . " keys\n";
-    $local->del($syncedKeys);
+    if(count($syncedKeys) > 0){
+        $local->del($syncedKeys);
+    }
 }else{
     echo "Synced " . count($syncedKeys) . " keys\n";
 }
